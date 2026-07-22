@@ -12,8 +12,6 @@ func Plugin(ctx context.Context) *plugin.Plugin {
 
 		ConnectionConfigSchema: ConfigSchema,
 
-		TableMap: map[string]*plugin.Table{
-			"proxmox_node": tableProxmoxNode(),
-		},
+		TableMap: map[string]*plugin.Table{},
 	}
 }

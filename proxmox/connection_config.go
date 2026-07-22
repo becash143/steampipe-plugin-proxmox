@@ -9,7 +9,7 @@ type Config struct {
 	Endpoint  string `cty:"endpoint"`
 	APIToken  string `cty:"api_token"`
 	APISecret string `cty:"api_secret"`
-	Insecure  bool   `cty:"insecure"`
+	Insecure  *bool  `cty:"insecure"`
 }
 
 func ConfigInstance() interface{} {
