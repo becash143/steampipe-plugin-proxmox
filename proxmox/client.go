@@ -15,17 +15,14 @@ type Client struct {
 
 func NewClient(cfg Config) *Client {
 	insecure := false
-
 	if cfg.Insecure != nil {
 		insecure = *cfg.Insecure
 	}
-
 	tr := &http.Transport{
 		TLSClientConfig: &tls.Config{
 			InsecureSkipVerify: insecure, // #nosec G402 - user-configured TLS option
 		},
 	}
-
 	return &Client{
 		Endpoint:   cfg.Endpoint,
 		TokenID:    cfg.APIToken,

@@ -18,23 +18,19 @@ func ConfigInstance() interface{} {
 
 var ConfigSchema = &plugin.ConnectionConfigSchema{
 	NewInstance: ConfigInstance,
-
 	Schema: map[string]*schema.Attribute{
 		"endpoint": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-
 		"api_token": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-
 		"api_secret": {
 			Type:     schema.TypeString,
 			Required: true,
 		},
-
 		"insecure": {
 			Type: schema.TypeBool,
 		},
