@@ -25,7 +25,7 @@ select
 from
   proxmox_user
 where
-  enable = false;
+  enable = 0;
 ```
 
 ### Find users with an expiration date set
@@ -37,8 +37,7 @@ select
 from
   proxmox_user
 where
-  expire is not null
-  and expire > 0;
+  expire is not null;
 ```
 
 ### Find users belonging to a specific realm
@@ -51,4 +50,17 @@ from
   proxmox_user
 where
   userid like '%@pam';
+```
+
+### Find users missing an email address
+
+```sql
+select
+  userid,
+  comment
+from
+  proxmox_user
+where
+  email is null
+  or email = '';
 ```

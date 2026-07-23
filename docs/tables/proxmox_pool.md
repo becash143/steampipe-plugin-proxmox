@@ -26,12 +26,14 @@ where
   comment ilike '%production%';
 ```
 
-### Count members per pool
+### Find pools with no comment set
 
 ```sql
 select
-  poolid,
-  jsonb_array_length(members) as member_count
+  poolid
 from
-  proxmox_pool;
+  proxmox_pool
+where
+  comment is null
+  or comment = '';
 ```

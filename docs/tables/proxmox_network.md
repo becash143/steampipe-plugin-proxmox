@@ -27,7 +27,7 @@ select
 from
   proxmox_network
 where
-  active = false;
+  active = 0;
 ```
 
 ### List bridge interfaces
@@ -36,7 +36,8 @@ where
 select
   iface,
   node,
-  address
+  address,
+  gateway
 from
   proxmox_network
 where
@@ -53,4 +54,30 @@ from
   proxmox_network
 group by
   node;
+```
+
+### Find interfaces using DHCP instead of static IPs
+
+```sql
+select
+  iface,
+  node,
+  method
+from
+  proxmox_network
+where
+  method = 'dhcp';
+```
+
+### Find interfaces that won't start automatically on boot
+
+```sql
+select
+  iface,
+  node,
+  type
+from
+  proxmox_network
+where
+  autostart = 0;
 ```

@@ -9,7 +9,6 @@ Retrieve information about storage pools configured across your Proxmox VE clust
 ```sql
 select
   storage,
-  node,
   type,
   used,
   total,
@@ -23,12 +22,13 @@ from
 ```sql
 select
   storage,
-  node,
+  type,
   round((used::numeric / total) * 100, 2) as percent_used
 from
   proxmox_storage
 where
-  (used::numeric / total) > 0.85
+  total > 0
+  and (used::numeric / total) > 0.85
 order by
   percent_used desc;
 ```
@@ -38,8 +38,8 @@ order by
 ```sql
 select
   storage,
-  node,
-  type
+  type,
+  content
 from
   proxmox_storage
 order by
@@ -51,7 +51,7 @@ order by
 ```sql
 select
   storage,
-  node,
+  type,
   avail
 from
   proxmox_storage
@@ -59,4 +59,30 @@ order by
   avail desc
 limit
   5;
+```
+
+### Find inactive storage pools
+
+```sql
+select
+  storage,
+  type,
+  active
+from
+  proxmox_storage
+where
+  active = 0;
+```
+
+### Find storage pools shared across nodes
+
+```sql
+select
+  storage,
+  type,
+  content
+from
+  proxmox_storage
+where
+  shared = 1;
 ```
