@@ -155,7 +155,7 @@ order by
 
 ## Development
 
-Requires [Go](https://go.dev) 1.24+ and the [Steampipe CLI](https://steampipe.io/downloads).
+Requires [Go](https://go.dev) 1.26+ and the [Steampipe CLI](https://steampipe.io/downloads).
 
 ```bash
 git clone https://github.com/becash143/steampipe-plugin-proxmox.git
