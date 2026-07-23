@@ -1,0 +1,4 @@
+steampipe-plugin-proxmox
+steampipe-plugin-proxmox.plugin
+*.plugin
+logs/
