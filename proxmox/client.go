@@ -3,6 +3,7 @@ package proxmox
 import (
 	"crypto/tls"
 	"net/http"
+	"strings"
 	"time"
 )
 
@@ -24,7 +25,7 @@ func NewClient(cfg Config) *Client {
 		},
 	}
 	return &Client{
-		Endpoint:   cfg.Endpoint,
+		Endpoint:   strings.TrimRight(cfg.Endpoint, "/"),
 		TokenID:    cfg.APIToken,
 		TokenValue: cfg.APISecret,
 		Client: &http.Client{
