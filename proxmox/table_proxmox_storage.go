@@ -17,6 +17,7 @@ func tableProxmoxStorage() *plugin.Table {
 		},
 		Columns: []*plugin.Column{
 			{Name: "storage", Type: proto.ColumnType_STRING, Description: "Storage identifier.", Transform: transform.FromField("Storage")},
+			{Name: "node", Type: proto.ColumnType_STRING, Description: "Node this storage status was reported from.", Transform: transform.FromField("Node")},
 			{Name: "type", Type: proto.ColumnType_STRING, Description: "Storage type (dir, nfs, zfs, lvm, etc).", Transform: transform.FromField("Type")},
 			{Name: "content", Type: proto.ColumnType_STRING, Description: "Allowed content types.", Transform: transform.FromField("Content")},
 			{Name: "active", Type: proto.ColumnType_INT, Description: "Whether storage is active.", Transform: transform.FromField("Active")},
@@ -32,12 +33,19 @@ func listProxmoxStorage(ctx context.Context, d *plugin.QueryData, h *plugin.Hydr
 	config := d.Connection.Config.(Config)
 	client := NewClient(config)
 
-	storages, err := client.ListStorage()
+	nodes, err := client.ListNodes()
 	if err != nil {
 		return nil, err
 	}
-	for _, s := range storages {
-		d.StreamListItem(ctx, s)
+
+	for _, n := range nodes {
+		storages, err := client.ListStorageStatus(n.Node)
+		if err != nil {
+			return nil, err
+		}
+		for _, s := range storages {
+			d.StreamListItem(ctx, s)
+		}
 	}
 	return nil, nil
 }

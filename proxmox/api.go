@@ -75,11 +75,23 @@ func (c *Client) ListClusterResources() ([]ClusterResource, error) {
 	return response.Data, nil
 }
 
-// ListStorage returns all storage pools.
+// ListStorage returns all storage pools (cluster-wide configuration; no live usage data).
 func (c *Client) ListStorage() ([]Storage, error) {
 	var response apiResponse[[]Storage]
 	if err := c.doRequest("/api2/json/storage", &response); err != nil {
 		return nil, err
+	}
+	return response.Data, nil
+}
+
+// ListStorageStatus returns storage status, including live usage, for a given node.
+func (c *Client) ListStorageStatus(node string) ([]Storage, error) {
+	var response apiResponse[[]Storage]
+	if err := c.doRequest(fmt.Sprintf("/api2/json/nodes/%s/storage", node), &response); err != nil {
+		return nil, err
+	}
+	for i := range response.Data {
+		response.Data[i].Node = node
 	}
 	return response.Data, nil
 }

@@ -55,6 +55,7 @@ type ClusterResource struct {
 }
 
 type Storage struct {
+	Node    string `json:"-"`
 	Storage string `json:"storage"`
 	Type    string `json:"type"`
 	Content string `json:"content"`
