@@ -1,10 +1,8 @@
 version: 2
 project_name: steampipe-plugin-proxmox
-
 before:
   hooks:
     - go mod tidy
-
 builds:
   - id: proxmox
     binary: steampipe-plugin-proxmox.plugin
@@ -17,21 +15,18 @@ builds:
       - arm64
     ldflags:
       - -s -w
-
 archives:
   - id: proxmox
-    builds:
+    ids:
       - proxmox
-    format: gzip
+    formats:
+      - gzip
     name_template: "{{ .ProjectName }}.{{ .Os }}_{{ .Arch }}"
-
 checksum:
   name_template: "checksums.txt"
-
 release:
   github:
     owner: becash143
     name: steampipe-plugin-proxmox
-
 changelog:
   sort: asc
