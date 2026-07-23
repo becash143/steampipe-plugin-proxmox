@@ -20,7 +20,7 @@ archives:
     ids:
       - proxmox
     formats:
-      - gzip
+      - tar.gz
     name_template: "{{ .ProjectName }}.{{ .Os }}_{{ .Arch }}"
 checksum:
   name_template: "checksums.txt"
