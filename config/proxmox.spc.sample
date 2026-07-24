@@ -1,10 +1,11 @@
 connection "proxmox" {
   plugin = "becash143/proxmox"
 
-  # The base URL of your Proxmox VE API endpoint.
-  # This typically points at port 8006 and includes the /api2/json suffix.
+  # The base URL of your Proxmox VE host, without any API path suffix.
+  # This typically points at port 8006. Do not include /api2/json —
+  # the plugin appends it automatically to every request.
   # Can also be set with the PROXMOX_ENDPOINT environment variable.
-  endpoint = "https://pve.example.com:8006/api2/json"
+  endpoint = "https://pve.example.com:8006"
 
   # API token ID, in the format "user@realm!tokenid".
   # Create one in the Proxmox UI under Datacenter > Permissions > API Tokens.

@@ -17,13 +17,13 @@ func tableProxmoxContainer() *plugin.Table {
 		},
 		Columns: []*plugin.Column{
 			{Name: "node", Type: proto.ColumnType_STRING, Description: "Node the container runs on.", Transform: transform.FromField("Node")},
-			{Name: "vmid", Type: proto.ColumnType_INT, Description: "Container ID.", Transform: transform.FromField("VMID")},
+			{Name: "vm_id", Type: proto.ColumnType_INT, Description: "Container ID.", Transform: transform.FromField("VMID")},
 			{Name: "name", Type: proto.ColumnType_STRING, Description: "Container name.", Transform: transform.FromField("Name")},
 			{Name: "status", Type: proto.ColumnType_STRING, Description: "Container status.", Transform: transform.FromField("Status")},
 			{Name: "cpus", Type: proto.ColumnType_INT, Description: "Number of CPUs.", Transform: transform.FromField("CPUs")},
 			{Name: "mem", Type: proto.ColumnType_INT, Description: "Current memory usage.", Transform: transform.FromField("Mem")},
-			{Name: "maxmem", Type: proto.ColumnType_INT, Description: "Maximum memory.", Transform: transform.FromField("MaxMem")},
-			{Name: "maxdisk", Type: proto.ColumnType_INT, Description: "Maximum disk.", Transform: transform.FromField("MaxDisk")},
+			{Name: "max_mem", Type: proto.ColumnType_INT, Description: "Maximum memory.", Transform: transform.FromField("MaxMem")},
+			{Name: "max_disk", Type: proto.ColumnType_INT, Description: "Maximum disk.", Transform: transform.FromField("MaxDisk")},
 			{Name: "uptime", Type: proto.ColumnType_INT, Description: "Uptime in seconds.", Transform: transform.FromField("Uptime")},
 		},
 	}

@@ -4,36 +4,36 @@ type Node struct {
 	Node      string  `json:"node"`
 	Status    string  `json:"status"`
 	CPU       float64 `json:"cpu"`
-	MaxCPU    int     `json:"maxcpu"`
+	MaxCPU    int     `json:"max_cpu"`
 	Memory    uint64  `json:"mem"`
-	MaxMemory uint64  `json:"maxmem"`
+	MaxMemory uint64  `json:"max_mem"`
 	Disk      uint64  `json:"disk"`
-	MaxDisk   uint64  `json:"maxdisk"`
+	MaxDisk   uint64  `json:"max_disk"`
 	Uptime    uint64  `json:"uptime"`
 	Type      string  `json:"type"`
 }
 
 type VM struct {
 	Node    string `json:"-"`
-	VMID    int    `json:"vmid"`
+	VMID    int    `json:"vm_id"`
 	Name    string `json:"name"`
 	Status  string `json:"status"`
 	CPUs    int    `json:"cpus"`
 	Mem     uint64 `json:"mem"`
-	MaxMem  uint64 `json:"maxmem"`
-	MaxDisk uint64 `json:"maxdisk"`
+	MaxMem  uint64 `json:"max_mem"`
+	MaxDisk uint64 `json:"max_disk"`
 	Uptime  uint64 `json:"uptime"`
 }
 
 type Container struct {
 	Node    string `json:"-"`
-	VMID    int    `json:"vmid"`
+	VMID    int    `json:"vm_id"`
 	Name    string `json:"name"`
 	Status  string `json:"status"`
 	CPUs    int    `json:"cpus"`
 	Mem     uint64 `json:"mem"`
-	MaxMem  uint64 `json:"maxmem"`
-	MaxDisk uint64 `json:"maxdisk"`
+	MaxMem  uint64 `json:"max_mem"`
+	MaxDisk uint64 `json:"max_disk"`
 	Uptime  uint64 `json:"uptime"`
 }
 
@@ -45,11 +45,11 @@ type ClusterResource struct {
 	Name    string  `json:"name"`
 	Status  string  `json:"status"`
 	CPU     float64 `json:"cpu"`
-	MaxCPU  int     `json:"maxcpu"`
+	MaxCPU  int     `json:"max_cpu"`
 	Mem     uint64  `json:"mem"`
-	MaxMem  uint64  `json:"maxmem"`
+	MaxMem  uint64  `json:"max_mem"`
 	Disk    uint64  `json:"disk"`
-	MaxDisk uint64  `json:"maxdisk"`
+	MaxDisk uint64  `json:"max_disk"`
 	Uptime  uint64  `json:"uptime"`
 	Pool    string  `json:"pool"`
 }
@@ -80,7 +80,7 @@ type NetworkInterface struct {
 
 type Task struct {
 	Node      string `json:"-"`
-	UPID      string `json:"upid"`
+	UPID      string `json:"up_id"`
 	Type      string `json:"type"`
 	Status    string `json:"status"`
 	User      string `json:"user"`

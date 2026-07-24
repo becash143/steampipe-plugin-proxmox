@@ -43,30 +43,16 @@ connection "proxmox" {
 
 Create an API token in the Proxmox web UI under **Datacenter → Permissions → API Tokens**. For a read-only inventory tool like this plugin, assign the token the **PVEAuditor** role at path `/`, and make sure **Privilege Separation** is unchecked (or an explicit role is granted) so the token can see VMs, containers, and other resources — not just nodes.
 
-### Authenticate with a username and password
 
-```hcl
-connection "proxmox" {
-  plugin   = "local/proxmox"
-  endpoint = "https://your-proxmox-host:8006"
-  username = "root@pam"
-  password = "your-password"
-  insecure = true
-}
-```
-
-Only one authentication method is required — set either `api_token`/`api_secret` **or** `username`/`password`, not both.
 
 | Argument     | Type   | Required | Description                                                                 |
 |--------------|--------|----------|-------------------------------------------------------------------------------|
 | `endpoint`   | string | Yes      | Base URL of your Proxmox API, e.g. `https://proxmox.example.com:8006`         |
 | `api_token`  | string | No*      | API token ID in `user@realm!tokenid` format                                   |
 | `api_secret` | string | No*      | API token secret                                                               |
-| `username`   | string | No*      | Username in `user@realm` format (alternative to token auth)                    |
-| `password`   | string | No*      | Password for the given username                                                |
 | `insecure`   | bool   | No       | Skip TLS certificate verification. Defaults to `false`.                        |
 
-\* Either the token pair or the username/password pair is required.
+\*  The token pair is required.
 
 ## Get Involved
 

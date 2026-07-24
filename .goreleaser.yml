@@ -7,6 +7,10 @@ builds:
   - id: proxmox
     binary: steampipe-plugin-proxmox.plugin
     main: .
+    env:
+      - CGO_ENABLED=0
+    flags:
+      - -tags=netgo
     goos:
       - linux
       - darwin

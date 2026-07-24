@@ -32,7 +32,6 @@ func expireToTimestamp(_ context.Context, d *transform.TransformData) (interface
 	if d.Value == nil {
 		return nil, nil
 	}
-
 	var epoch int64
 	switch v := d.Value.(type) {
 	case int64:
@@ -45,23 +44,31 @@ func expireToTimestamp(_ context.Context, d *transform.TransformData) (interface
 		// Unexpected type, don't fail the whole query
 		return nil, nil
 	}
-
 	if epoch == 0 {
 		return nil, nil
 	}
-
 	return time.Unix(epoch, 0), nil
 }
 
 func listProxmoxUsers(ctx context.Context, d *plugin.QueryData, h *plugin.HydrateData) (any, error) {
-	config := d.Connection.Config.(Config)
-	client := NewClient(config)
+	client, err := connect(ctx, d, h)
+	if err != nil {
+		plugin.Logger(ctx).Error("proxmox_user.listProxmoxUsers", "connect_error", err)
+		return nil, err
+	}
 	users, err := client.ListUsers()
 	if err != nil {
+		plugin.Logger(ctx).Error("proxmox_user.listProxmoxUsers", "api_error", err)
 		return nil, err
 	}
 	for _, u := range users {
 		d.StreamListItem(ctx, u)
+
+		// Stop streaming early once the query's LIMIT is satisfied or the
+		// context has been cancelled.
+		if d.RowsRemaining(ctx) == 0 {
+			return nil, nil
+		}
 	}
 	return nil, nil
 }

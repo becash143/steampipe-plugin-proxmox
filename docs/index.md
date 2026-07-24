@@ -1,3 +1,38 @@
+---
+organization: becash143
+category: ["private cloud"]
+icon_url: "/images/plugins/becash143/proxmox.svg"
+brand_color: "#E57000"
+display_name: "Proxmox VE"
+name: "proxmox"
+description: "Steampipe plugin for querying Proxmox VE nodes, VMs, containers, storage and more."
+og_description: "Query Proxmox VE with SQL! Open source CLI. No DB required."
+og_image: "/images/plugins/becash143/proxmox-social-graphic.png"
+engines: ["steampipe", "sqlite", "postgres", "export"]
+---
+# Proxmox VE + Steampipe
+
+Proxmox VE is an open source platform for running KVM virtual machines and LXC containers. [Steampipe](https://steampipe.io) is an open source zero-ETL engine to instantly query cloud APIs using SQL.
+
+```sql
+select
+  name,
+  status,
+  node
+from
+  proxmox_vm
+where
+  status = 'running';
+```
+
+```
++---------+---------+-------+
+| name    | status  | node  |
++---------+---------+-------+
+| web-01  | running | pve1  |
+| db-01   | running | pve1  |
++---------+---------+-------+
+```
 ## Documentation
 
 - **[Table definitions & examples →](/plugins/becash143/proxmox/tables)**
@@ -19,7 +54,6 @@ steampipe plugin install becash143/proxmox
 | Credentials | Requires an [API token](https://pve.proxmox.com/wiki/Proxmox_VE_API#API_Tokens) created in the Proxmox VE UI. |
 | Permissions | The API token's associated user/role determines which resources are visible. Read-only roles are sufficient for querying. |
 | Radius      | Each connection represents a single Proxmox VE cluster or standalone node.                                     |
-| Resolution  | Credentials are resolved in the following order: named profile in the connection config, environment variables. |
 
 ### Configuration
 

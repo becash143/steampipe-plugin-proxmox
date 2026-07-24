@@ -16,7 +16,7 @@ func tableProxmoxPool() *plugin.Table {
 			Hydrate: listProxmoxPools,
 		},
 		Columns: []*plugin.Column{
-			{Name: "poolid", Type: proto.ColumnType_STRING, Description: "Pool identifier.", Transform: transform.FromField("PoolID")},
+			{Name: "pool_id", Type: proto.ColumnType_STRING, Description: "Pool identifier.", Transform: transform.FromField("PoolID")},
 			{Name: "comment", Type: proto.ColumnType_STRING, Description: "Pool comment/description.", Transform: transform.FromField("Comment")},
 		},
 	}
