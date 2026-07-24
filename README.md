@@ -219,10 +219,6 @@ Contributions are welcome! Please read the
 3. Make your changes, with tests/sample queries where relevant
 4. Open a PR against `main`, referencing any related issue (e.g. `Fixes #12`)
 
-Small fixes made directly by maintainers are fine too — not everything needs
-a PR, but issue-linked commits (and a comment closing the issue) keep the
-history traceable for other contributors.
-
 ## Get involved
 
 - Source code: [github.com/becash143/steampipe-plugin-proxmox](https://github.com/becash143/steampipe-plugin-proxmox)
