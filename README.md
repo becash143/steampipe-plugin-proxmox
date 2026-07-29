@@ -28,12 +28,6 @@ Install the plugin with Steampipe:
 steampipe plugin install becash143/proxmox
 ```
 
-<!--
-  This form works once the plugin is listed on the Steampipe Hub. Until then,
-  keep installing from the published GitHub release instead:
-  steampipe plugin install ghcr.io/becash143/proxmox
--->
-
 Configure your credentials in `~/.steampipe/config/proxmox.spc`:
 
 ```hcl
@@ -55,9 +49,24 @@ just nodes.
 
 Run a query:
 
-```bash
-steampipe query
-> select storage, node, type, is_shared, used, total from proxmox_storage;
+```sql
+select
+  name,
+  status,
+  node
+from
+  proxmox_vm
+where
+  status = 'running';
+```
+
+```
++---------+---------+-------+
+| name    | status  | node  |
++---------+---------+-------+
+| web-01  | running | pve1  |
+| db-01   | running | pve1  |
++---------+---------+-------+
 ```
 
 ### Connection arguments
@@ -98,7 +107,7 @@ select
   node,
   status,
   mem,
-  maxmem
+  max_mem
 from
   proxmox_vm
 where
@@ -142,9 +151,9 @@ order by
 select
   node,
   type,
-  user,
+  user_id,
   status,
-  to_timestamp(start_time) as started_at
+  start_time as started_at
 from
   proxmox_task
 where
@@ -173,13 +182,9 @@ cd steampipe-plugin-proxmox
 
 **Build and install**
 
-```bash
-make
-```
 
 <!--
-  Replace with your actual Makefile target if it differs (e.g. `make install`
-  or `make dev`). This should build the plugin binary and copy it into
+  This should build the plugin binary and copy it into
   ~/.steampipe/plugins/local/proxmox/steampipe-plugin-proxmox.plugin, i.e.
   automate what used to be these manual steps:
 
@@ -211,8 +216,7 @@ steampipe query
 
 ## Contributing
 
-Contributions are welcome! Please read the
-[contribution guidelines](./CONTRIBUTING.md) before opening a PR.
+Contributions are welcome!
 
 1. Fork the repo
 2. Create a feature branch

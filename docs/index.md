@@ -89,16 +89,6 @@ connection "proxmox" {
 4. If you want the token scoped down instead of inheriting the user's full permissions, uncheck **Privilege Separation** only if you understand the implications; otherwise assign an appropriate role to the token via **Datacenter > Permissions**.
 5. Copy the generated secret immediately — Proxmox will not show it again.
 
-#### Credentials from environment variables
-
-You can also set credentials using environment variables instead of the `.spc` file:
-
-```sh
-export PROXMOX_ENDPOINT="https://pve.example.com:8006"
-export PROXMOX_API_TOKEN="root@pam!steampipe"
-export PROXMOX_API_SECRET="1234abcd-5678-90ef-abcd-1234567890ab"
-```
-
 ### Multiple Connections
 
 You can query multiple Proxmox clusters or nodes at once using [aggregators](https://steampipe.io/docs/managing/connections#using-aggregators):

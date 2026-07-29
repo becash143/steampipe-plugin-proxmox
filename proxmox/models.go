@@ -80,7 +80,7 @@ type NetworkInterface struct {
 
 type Task struct {
 	Node      string `json:"-"`
-	UPID      string `json:"up_id"`
+	UPID      string `json:"upid"`
 	Type      string `json:"type"`
 	Status    string `json:"status"`
 	User      string `json:"user"`

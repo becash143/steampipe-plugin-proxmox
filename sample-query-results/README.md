@@ -32,7 +32,13 @@ order by table_name;
 ```
 
 ![tables](./tables.png)
-
+![tables](./proxmox_resources.png)
+![tables](./cluster_resource.png)
+![tables](./container.png)
+![tables](./node.png)
+![tables](./pool.png)
+![tables](./user.png)
+![tables](./vm.png)
 ---
 
 ## Sample rows per table
@@ -46,8 +52,6 @@ select * from proxmox_container limit 3;
 -- repeat for any other proxmox_* table returned above
 ```
 
-![proxmox_task_sample](./proxmox_task_sample.png)
-![proxmox_storage_sample](./proxmox_storage_sample.png)
 
 ---
 
@@ -57,25 +61,23 @@ Confirms `end_time` is returned as `null` (not a zero-epoch or malformed value)
 for tasks that are still running.
 
 ```sql
-select node, upid, type, status, start_time, end_time
+select node, up_id, type, status, start_time, end_time
 from proxmox_task
 order by start_time desc
 limit 5;
 ```
 
-![proxmox_task_recent](./proxmox_task_recent.png)
-
+![proxmox_task_recent](./upid_5.png)
 Companion query to guarantee at least one running task is captured, even if it
 wouldn't otherwise appear in the first 5 most-recent rows:
 
 ```sql
-select node, upid, type, status, start_time, end_time
+select node, up_id, type, status, start_time, end_time
 from proxmox_task
 where end_time is null
 limit 3;
 ```
-
-![proxmox_task_running](./proxmox_task_running.png)
+![proxmox_task_recent](./upid_3.png))
 
 ---
 

@@ -19,7 +19,7 @@ The `proxmox_container` table in Steampipe provides you with information about L
 ```sql+postgres
 select
   name,
-  vmid,
+  vm_id,
   node,
   status,
   cpus,
@@ -31,7 +31,7 @@ from
 ```sql+sqlite
 select
   name,
-  vmid,
+  vm_id,
   node,
   status,
   cpus,
@@ -115,7 +115,7 @@ where
 ```sql+postgres
 select
   name,
-  vmid,
+  vm_id,
   node
 from
   proxmox_container
@@ -126,7 +126,7 @@ where
 ```sql+sqlite
 select
   name,
-  vmid,
+  vm_id,
   node
 from
   proxmox_container

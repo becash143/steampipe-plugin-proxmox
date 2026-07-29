@@ -17,8 +17,8 @@ func tableProxmoxUser() *plugin.Table {
 			Hydrate: listProxmoxUsers,
 		},
 		Columns: []*plugin.Column{
-			{Name: "userid", Type: proto.ColumnType_STRING, Description: "User ID (e.g. user@pve).", Transform: transform.FromField("UserID")},
-			{Name: "enable", Type: proto.ColumnType_INT, Description: "Whether the account is enabled.", Transform: transform.FromField("Enable")},
+			{Name: "user_id", Type: proto.ColumnType_STRING, Description: "User ID (e.g. user@pve).", Transform: transform.FromField("UserID")},
+			{Name: "is_enabled", Type: proto.ColumnType_INT, Description: "Whether the account is enabled.", Transform: transform.FromField("Enable")},
 			{Name: "expire", Type: proto.ColumnType_TIMESTAMP, Description: "Account expiration (unix epoch, 0 = never).", Transform: transform.FromField("Expire").Transform(expireToTimestamp)},
 			{Name: "email", Type: proto.ColumnType_STRING, Description: "Email address.", Transform: transform.FromField("Email")},
 			{Name: "comment", Type: proto.ColumnType_STRING, Description: "Comment/description.", Transform: transform.FromField("Comment")},
