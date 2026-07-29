@@ -183,6 +183,10 @@ cd steampipe-plugin-proxmox
 **Build and install**
 
 
+```bash
+make
+```
+
 <!--
   This should build the plugin binary and copy it into
   ~/.steampipe/plugins/local/proxmox/steampipe-plugin-proxmox.plugin, i.e.

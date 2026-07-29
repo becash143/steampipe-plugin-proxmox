@@ -77,7 +77,7 @@ from proxmox_task
 where end_time is null
 limit 3;
 ```
-![proxmox_task_recent](./upid_3.png))
+![proxmox_task_recent](./upid_3.png)
 
 ---
 
