@@ -182,24 +182,9 @@ cd steampipe-plugin-proxmox
 
 **Build and install**
 
-
-```bash
-make
+```sh
+make install
 ```
-
-<!--
-  This should build the plugin binary and copy it into
-  ~/.steampipe/plugins/local/proxmox/steampipe-plugin-proxmox.plugin, i.e.
-  automate what used to be these manual steps:
-
-    go build -o steampipe-plugin-proxmox.plugin .
-    mkdir -p ~/.steampipe/plugins/local/proxmox
-    cp steampipe-plugin-proxmox.plugin ~/.steampipe/plugins/local/proxmox/steampipe-plugin-proxmox.plugin
-    chmod +x ~/.steampipe/plugins/local/proxmox/steampipe-plugin-proxmox.plugin
-
-  If there's no Makefile yet, keep the manual steps above instead — a
-  Makefile with an `install` target that mirrors them is a good addition.
--->
 
 When installed locally, reference the plugin as `local/proxmox` in your
 connection config:
